@@ -5,6 +5,7 @@ import * as database from "./config/database";
 import clientRoutes from "./routes/client/index.route";
 import adminRoutes from "./routes/admin/index.route";
 import { systemConfig } from "./config/system";
+import methodOverride from "method-override";
 import path from "path";
 import bodyParser from "body-parser";
 
@@ -19,6 +20,7 @@ app.use(express.static("public"))
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(methodOverride('_method'))
 
 app.set("views","./views");
 app.set("view engine","pug");

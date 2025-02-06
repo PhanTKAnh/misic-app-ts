@@ -7,12 +7,14 @@ if(aplayer){
     let dataSinger = aplayer.getAttribute("data-singer");
     dataSinger = JSON.parse(dataSinger)
     const ap = new APlayer({
+        lrcType: 1,
         container: aplayer,
         audio: [{
             name: dataSong.title,
             artist: dataSinger.fullName,
             url: dataSong.audio,
-            cover: dataSong.avatar
+            cover: dataSong.avatar,
+            lrc: dataSong.lyrics
         }],
         autoplay: true,
         volume:0.8

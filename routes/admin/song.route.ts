@@ -7,14 +7,17 @@ import * as uploadCloud from "../../middlewares/admin/uploadCloud.middleware";
 const upload = multer();
 
 
-router.get("/", controller.index );
+router.get("/", controller.index);
 router.get("/create", controller.create);
 router.post(
-    "/create", 
-    upload.single("avatar"), 
-    uploadCloud.uploadSingle,
-    controller.createPost
-  );
-
+  "/create",
+  upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'audio', maxCount: 1 }]),
+  uploadCloud.uploadFields,
+  controller.createPost
+);
+router.get("/edit/:id", controller.edit);
+router.patch("/edit/:id",
+  upload.fields([{ name: 'avatar', maxCount: 1 }, { name: 'audio', maxCount: 1 }]),
+  uploadCloud.uploadFields, controller.editPatch);
 
 export const songsRoutes: Router = router;
